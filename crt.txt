@@ -1,8 +1,3 @@
-
-// =====================================================
-// TOPIC 1: INSERT STUDENTS
-// =====================================================
-
 db.students.insertMany([
     {
         rollNo: 101,
@@ -17,7 +12,6 @@ db.students.insertMany([
         },
         scholarship: true
     },
-
     {
         rollNo: 102,
         name: "Rahul",
@@ -31,7 +25,6 @@ db.students.insertMany([
         },
         scholarship: false
     },
-
     {
         rollNo: 103,
         name: "Priya",
@@ -45,7 +38,6 @@ db.students.insertMany([
         },
         scholarship: true
     },
-
     {
         rollNo: 104,
         name: "Arjun",
@@ -58,7 +50,6 @@ db.students.insertMany([
             state: "Telangana"
         }
     },
-
     {
         rollNo: 105,
         name: "Sneha",
@@ -72,7 +63,6 @@ db.students.insertMany([
         },
         scholarship: true
     },
-
     {
         rollNo: 106,
         name: "Kiran",
@@ -86,7 +76,6 @@ db.students.insertMany([
         },
         scholarship: false
     },
-
     {
         rollNo: 107,
         name: "Anjali",
@@ -100,7 +89,6 @@ db.students.insertMany([
         },
         scholarship: true
     },
-
     {
         rollNo: 108,
         name: "Rohit",
@@ -114,7 +102,6 @@ db.students.insertMany([
         },
         scholarship: false
     },
-
     {
         rollNo: 109,
         name: "Divya",
@@ -128,7 +115,6 @@ db.students.insertMany([
         },
         scholarship: true
     },
-
     {
         rollNo: 110,
         name: "Suresh",
@@ -142,7 +128,6 @@ db.students.insertMany([
         },
         scholarship: false
     },
-
     {
         rollNo: 111,
         name: "Meena",
@@ -156,7 +141,6 @@ db.students.insertMany([
         },
         scholarship: true
     },
-
     {
         rollNo: 112,
         name: "Akash",
@@ -172,56 +156,35 @@ db.students.insertMany([
     }
 ]);
 
-// =====================================================
-// TOPIC 2: INSERT 50 PRODUCTS
-// =====================================================
-
 for (let i = 1; i <= 50; i++) {
-
     db.products.insertOne({
         productId: i,
         productName: "Product " + i,
-
         category:
             i % 5 === 0 ? "Laptop" :
             i % 5 === 1 ? "Mobile" :
             i % 5 === 2 ? "Headphones" :
             i % 5 === 3 ? "Keyboard" :
             "Mouse",
-
         brand:
             i % 3 === 0 ? "Dell" :
             i % 3 === 1 ? "Samsung" :
             "HP",
-
         price: 1000 + (i * 500),
-
         stock: 10 + i,
-
         rating: 3 + ((i % 3) * 0.5),
-
         inStock: i % 4 !== 0,
-
         tags: [
             "electronics",
             i % 2 === 0 ? "featured" : "new"
         ],
-
         seller: {
             sellerId: 1000 + i,
             sellerName: "Seller " + i
         },
-
         createdAt: new Date()
     });
 }
-
-// =====================================================
-// TOPIC 3: LOGICAL OPERATORS
-// $and, $or, $not, $nor
-// =====================================================
-
-// 1. CSE AND marks greater than 85
 
 db.students.find({
     $and: [
@@ -230,16 +193,12 @@ db.students.find({
     ]
 });
 
-// 2. CSE OR IT
-
 db.students.find({
     $or: [
         { department: "CSE" },
         { department: "IT" }
     ]
 });
-
-// 3. Marks NOT greater than 80
 
 db.students.find({
     marks: {
@@ -249,8 +208,6 @@ db.students.find({
     }
 });
 
-// 4. Neither CSE nor IT
-
 db.students.find({
     $nor: [
         { department: "CSE" },
@@ -258,20 +215,11 @@ db.students.find({
     ]
 });
 
-// =====================================================
-// TOPIC 4: COMPARISON OPERATORS
-// $eq, $gt, $lt, $gte, $lte, $ne
-// =====================================================
-
-// 1. Department exactly CSE
-
 db.students.find({
     department: {
         $eq: "CSE"
     }
 });
-
-// 2. Marks greater than 80
 
 db.students.find({
     marks: {
@@ -279,15 +227,11 @@ db.students.find({
     }
 });
 
-// 3. Marks less than 70
-
 db.students.find({
     marks: {
         $lt: 70
     }
 });
-
-// 4. Marks greater than or equal to 85
 
 db.students.find({
     marks: {
@@ -295,15 +239,11 @@ db.students.find({
     }
 });
 
-// 5. Marks less than or equal to 70
-
 db.students.find({
     marks: {
         $lte: 70
     }
 });
-
-// 6. NOT from CSE
 
 db.students.find({
     department: {
@@ -311,20 +251,11 @@ db.students.find({
     }
 });
 
-// =====================================================
-// TOPIC 5: ARRAY OPERATORS
-// $in, $nin, $all, $elemMatch, $size
-// =====================================================
-
-// 1. Department is CSE or IT
-
 db.students.find({
     department: {
         $in: ["CSE", "IT"]
     }
 });
-
-// 2. Department is neither CSE nor IT
 
 db.students.find({
     department: {
@@ -332,19 +263,11 @@ db.students.find({
     }
 });
 
-// 3. Has BOTH Python and MongoDB
-
 db.students.find({
     skills: {
         $all: ["Python", "MongoDB"]
     }
 });
-
-// =====================================================
-// TOPIC 6: $elemMatch
-// =====================================================
-
-// Add subjects array
 
 db.students.updateOne(
     { rollNo: 101 },
@@ -359,8 +282,6 @@ db.students.updateOne(
     }
 );
 
-// Find MongoDB subject with marks greater than 85
-
 db.students.find({
     subjects: {
         $elemMatch: {
@@ -372,24 +293,11 @@ db.students.find({
     }
 });
 
-// =====================================================
-// TOPIC 7: $size
-// =====================================================
-
-// Students having exactly 3 skills
-
 db.students.find({
     skills: {
         $size: 3
     }
 });
-
-// =====================================================
-// TOPIC 8: PROJECTION OPERATORS
-// $project
-// =====================================================
-
-// 1. Display name, department and marks
 
 db.students.aggregate([
     {
@@ -402,12 +310,6 @@ db.students.aggregate([
     }
 ]);
 
-// =====================================================
-// TOPIC 9: INCLUDE FIELDS
-// =====================================================
-
-// Display only name and marks
-
 db.students.find(
     {},
     {
@@ -417,24 +319,12 @@ db.students.find(
     }
 );
 
-// =====================================================
-// TOPIC 10: EXCLUDE FIELDS
-// =====================================================
-
-// Display everything except address
-
 db.students.find(
     {},
     {
         address: 0
     }
 );
-
-// =====================================================
-// TOPIC 11: $slice
-// =====================================================
-
-// Display first two skills
 
 db.students.find(
     {},
@@ -446,20 +336,11 @@ db.students.find(
     }
 );
 
-// =====================================================
-// TOPIC 12: ELEMENT OPERATORS
-// $exists, $type, $regex
-// =====================================================
-
-// 1. Scholarship field exists
-
 db.students.find({
     scholarship: {
         $exists: true
     }
 });
-
-// 2. Scholarship field does NOT exist
 
 db.students.find({
     scholarship: {
@@ -467,23 +348,11 @@ db.students.find({
     }
 });
 
-// =====================================================
-// TOPIC 13: $type
-// =====================================================
-
-// Marks stored as integer
-
 db.students.find({
     marks: {
         $type: "int"
     }
 });
-
-// =====================================================
-// TOPIC 14: $regex
-// =====================================================
-
-// Names starting with A
 
 db.students.find({
     name: {
@@ -491,23 +360,13 @@ db.students.find({
     }
 });
 
-// =====================================================
-// TOPIC 15: CRUD - READ OPERATIONS
-// =====================================================
-
-// 1. Products in Laptop category
-
 db.products.find({
     category: "Laptop"
 });
 
-// 2. Products currently in stock
-
 db.products.find({
     inStock: true
 });
-
-// 3. Price greater than 20000
 
 db.products.find({
     price: {
@@ -515,15 +374,11 @@ db.products.find({
     }
 });
 
-// 4. Price less than 10000
-
 db.products.find({
     price: {
         $lt: 10000
     }
 });
-
-// 5. Price between 10000 and 30000
 
 db.products.find({
     price: {
@@ -532,18 +387,9 @@ db.products.find({
     }
 });
 
-// 6. Products sold by Seller 10
-
 db.products.find({
     "seller.sellerName": "Seller 10"
 });
-
-// =====================================================
-// TOPIC 16: UPDATE OPERATIONS
-// updateOne()
-// =====================================================
-
-// 1. Change Product 1 price to 10000
 
 db.products.updateOne(
     { productId: 1 },
@@ -553,8 +399,6 @@ db.products.updateOne(
         }
     }
 );
-
-// 2. Update Product 2 price and stock
 
 db.products.updateOne(
     { productId: 2 },
@@ -566,8 +410,6 @@ db.products.updateOne(
     }
 );
 
-// 3. Change Product 3 seller name
-
 db.products.updateOne(
     { productId: 3 },
     {
@@ -576,12 +418,6 @@ db.products.updateOne(
         }
     }
 );
-
-// =====================================================
-// TOPIC 17: $push
-// =====================================================
-
-// Add "sale" to Product 4 tags
 
 db.products.updateOne(
     { productId: 4 },
@@ -592,12 +428,6 @@ db.products.updateOne(
     }
 );
 
-// =====================================================
-// TOPIC 18: $addToSet
-// =====================================================
-
-// Add electronics without duplicate
-
 db.products.updateOne(
     { productId: 5 },
     {
@@ -606,12 +436,6 @@ db.products.updateOne(
         }
     }
 );
-
-// =====================================================
-// TOPIC 19: $inc
-// =====================================================
-
-// Increase Product 6 stock by 20
 
 db.products.updateOne(
     { productId: 6 },
@@ -622,8 +446,6 @@ db.products.updateOne(
     }
 );
 
-// Decrease Product 6 stock by 5
-
 db.products.updateOne(
     { productId: 6 },
     {
@@ -632,12 +454,6 @@ db.products.updateOne(
         }
     }
 );
-
-// =====================================================
-// TOPIC 20: updateMany()
-// =====================================================
-
-// 1. Set Laptop products inStock to true
 
 db.products.updateMany(
     { category: "Laptop" },
@@ -648,8 +464,6 @@ db.products.updateMany(
     }
 );
 
-// 2. Increase Samsung product prices by 1000
-
 db.products.updateMany(
     { brand: "Samsung" },
     {
@@ -659,10 +473,6 @@ db.products.updateMany(
     }
 );
 
-// =====================================================
-// TOPIC 21: MULTIPLE UPDATE OPERATORS
-// =====================================================
-
 db.products.updateOne(
     { productId: 10 },
     {
@@ -670,39 +480,22 @@ db.products.updateOne(
             price: 25000,
             inStock: true
         },
-
         $inc: {
             stock: 10
         },
-
         $push: {
             tags: "sale"
         }
     }
 );
 
-// =====================================================
-// TOPIC 22: DELETE OPERATIONS
-// deleteOne()
-// =====================================================
-
-// Delete Product 10
-
 db.products.deleteOne({
     productId: 10
 });
 
-// =====================================================
-// TOPIC 23: deleteMany()
-// =====================================================
-
-// 1. Delete all Laptop products
-
 db.products.deleteMany({
     category: "Laptop"
 });
-
-// 2. Delete products with price greater than 30000
 
 db.products.deleteMany({
     price: {
@@ -710,7 +503,4 @@ db.products.deleteMany({
     }
 });
 
-// 3. Delete all documents from products
-
 db.products.deleteMany({});
-```
