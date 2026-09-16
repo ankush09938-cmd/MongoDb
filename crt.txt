@@ -1,6 +1,4 @@
-You're right — I gave you the code, but **not topic-wise**. Here it is organized by topic, with headings as comments.
 
-```
 // =====================================================
 // TOPIC 1: INSERT STUDENTS
 // =====================================================
