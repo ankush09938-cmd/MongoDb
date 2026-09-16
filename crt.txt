@@ -1,3 +1,10 @@
+You're right — I gave you the code, but **not topic-wise**. Here it is organized by topic, with headings as comments.
+
+```
+// =====================================================
+// TOPIC 1: INSERT STUDENTS
+// =====================================================
+
 db.students.insertMany([
     {
         rollNo: 101,
@@ -165,23 +172,29 @@ db.students.insertMany([
         },
         scholarship: false
     }
-])
+]);
+
+// =====================================================
+// TOPIC 2: INSERT 50 PRODUCTS
+// =====================================================
+
 for (let i = 1; i <= 50; i++) {
 
     db.products.insertOne({
         productId: i,
-        productName: "Product " + i ,
+        productName: "Product " + i,
+
         category:
             i % 5 === 0 ? "Laptop" :
             i % 5 === 1 ? "Mobile" :
             i % 5 === 2 ? "Headphones" :
             i % 5 === 3 ? "Keyboard" :
-                          "Mouse",
+            "Mouse",
 
         brand:
             i % 3 === 0 ? "Dell" :
             i % 3 === 1 ? "Samsung" :
-                          "HP",
+            "HP",
 
         price: 1000 + (i * 500),
 
@@ -205,283 +218,136 @@ for (let i = 1; i <= 50; i++) {
     });
 }
 
+// =====================================================
+// TOPIC 3: LOGICAL OPERATORS
+// $and, $or, $not, $nor
+// =====================================================
 
+// 1. CSE AND marks greater than 85
 
-
-Operators:
-db.students.insertMany([
-    {
-        rollNo: 101,
-        name: "Vasanth",
-        age: 21,
-        department: "CSE",
-        marks: 85,
-        skills: ["Java", "Python", "MongoDB"],
-        address: {
-            city: "Chennai",
-            state: "Tamil Nadu"
-        },
-        scholarship: true
-    },
-
-    {
-        rollNo: 102,
-        name: "Rahul",
-        age: 22,
-        department: "ECE",
-        marks: 72,
-        skills: ["C", "Python", "Arduino"],
-        address: {
-            city: "Bangalore",
-            state: "Karnataka"
-        },
-        scholarship: false
-    },
-
-    {
-        rollNo: 103,
-        name: "Priya",
-        age: 20,
-        department: "CSE",
-        marks: 91,
-        skills: ["Java", "Python", "AI"],
-        address: {
-            city: "Chennai",
-            state: "Tamil Nadu"
-        },
-        scholarship: true
-    },
-
-    {
-        rollNo: 104,
-        name: "Arjun",
-        age: 23,
-        department: "MECH",
-        marks: 68,
-        skills: ["AutoCAD", "C", "Java"],
-        address: {
-            city: "Hyderabad",
-            state: "Telangana"
-        }
-    },
-
-    {
-        rollNo: 105,
-        name: "Sneha",
-        age: 21,
-        department: "IT",
-        marks: 88,
-        skills: ["Python", "MongoDB", "HTML"],
-        address: {
-            city: "Chennai",
-            state: "Tamil Nadu"
-        },
-        scholarship: true
-    },
-
-    {
-        rollNo: 106,
-        name: "Kiran",
-        age: 24,
-        department: "EEE",
-        marks: 65,
-        skills: ["C", "Arduino", "MATLAB"],
-        address: {
-            city: "Pune",
-            state: "Maharashtra"
-        },
-        scholarship: false
-    },
-
-    {
-        rollNo: 107,
-        name: "Anjali",
-        age: 20,
-        department: "CSE",
-        marks: 95,
-        skills: ["Java", "Python", "AI", "MongoDB"],
-        address: {
-            city: "Bangalore",
-            state: "Karnataka"
-        },
-        scholarship: true
-    },
-
-    {
-        rollNo: 108,
-        name: "Rohit",
-        age: 22,
-        department: "IT",
-        marks: 76,
-        skills: ["JavaScript", "HTML", "CSS"],
-        address: {
-            city: "Hyderabad",
-            state: "Telangana"
-        },
-        scholarship: false
-    },
-
-    {
-        rollNo: 109,
-        name: "Divya",
-        age: 21,
-        department: "CSE",
-        marks: 89,
-        skills: ["Python", "MongoDB", "Java"],
-        address: {
-            city: "Chennai",
-            state: "Tamil Nadu"
-        },
-        scholarship: true
-    },
-
-    {
-        rollNo: 110,
-        name: "Suresh",
-        age: 23,
-        department: "CIVIL",
-        marks: 70,
-        skills: ["AutoCAD", "C", "STAAD"],
-        address: {
-            city: "Vijayawada",
-            state: "Andhra Pradesh"
-        },
-        scholarship: false
-    },
-
-    {
-        rollNo: 111,
-        name: "Meena",
-        age: 22,
-        department: "ECE",
-        marks: 82,
-        skills: ["Python", "Arduino", "IoT"],
-        address: {
-            city: "Bangalore",
-            state: "Karnataka"
-        },
-        scholarship: true
-    },
-
-    {
-        rollNo: 112,
-        name: "Akash",
-        age: 25,
-        department: "CSE",
-        marks: 60,
-        skills: ["C", "Java"],
-        address: {
-            city: "Hyderabad",
-            state: "Telangana"
-        },
-        scholarship: false
-    }
-])
-LOGICAL OPERATORS
-$and       $or      $not       $nor
-1.Find students who belong to the CSE department AND have marks greater than 85.
 db.students.find({
     $and: [
         { department: "CSE" },
         { marks: { $gt: 85 } }
     ]
-})
-2.Find students who belong to CSE OR IT.
+});
+
+// 2. CSE OR IT
+
 db.students.find({
     $or: [
         { department: "CSE" },
         { department: "IT" }
     ]
-})
-3.Find students whose marks are NOT greater than 80.
+});
+
+// 3. Marks NOT greater than 80
+
 db.students.find({
     marks: {
         $not: {
             $gt: 80
         }
     }
-})
-4.Find students who are neither from CSE nor from IT.
+});
+
+// 4. Neither CSE nor IT
+
 db.students.find({
     $nor: [
         { department: "CSE" },
         { department: "IT" }
-    ] })
-COMPARISON OPERATORS : 
-Operator	Meaning	Example
-$eq	Equal To	{marks: {$eq: 80}}
-$gt	Greater Than	{marks: {$gt: 80}}
-$lt	Less Than	{marks: {$lt: 70}}
-$gte	Greater Than or Equal	{marks: {$gte: 85}}
-$lte	Less Than or Equal	{marks: {$lte: 70}}
-$ne	Not Equal	{department: {$ne: "CSE"}}
+    ]
+});
 
-1.Find students whose department is exactly CSE.
+// =====================================================
+// TOPIC 4: COMPARISON OPERATORS
+// $eq, $gt, $lt, $gte, $lte, $ne
+// =====================================================
+
+// 1. Department exactly CSE
+
 db.students.find({
     department: {
         $eq: "CSE"
     }
-})
-2.Find students whose marks are greater than 80.
+});
+
+// 2. Marks greater than 80
+
 db.students.find({
     marks: {
         $gt: 80
     }
-})
-3.Find students whose marks are less than 70.
+});
+
+// 3. Marks less than 70
+
 db.students.find({
     marks: {
         $lt: 70
     }
-})
-4.Find students whose marks are greater than or equal to 85.
+});
+
+// 4. Marks greater than or equal to 85
+
 db.students.find({
     marks: {
         $gte: 85
     }
-})
-5.Find students whose marks are less than or equal to 70.
+});
+
+// 5. Marks less than or equal to 70
+
 db.students.find({
     marks: {
         $lte: 70
     }
-})
-6.Find students who are NOT from the CSE department.
+});
+
+// 6. NOT from CSE
+
 db.students.find({
     department: {
         $ne: "CSE"
     }
-})
+});
 
-ARRAY OPERATORS
-$in                    $nin                      $all                        $elemMatch            $size
-Operator	Purpose
-$in	Matches any value from a list
-$nin	Matches values not present in a list
-$all	Array must contain all specified values
-$elemMatch	Matches an array element satisfying conditions
-$size	Matches an array of a specific size
+// =====================================================
+// TOPIC 5: ARRAY OPERATORS
+// $in, $nin, $all, $elemMatch, $size
+// =====================================================
 
-1.Find students whose department is either CSE or IT.
+// 1. Department is CSE or IT
+
 db.students.find({
     department: {
         $in: ["CSE", "IT"]
-    }})
-2.Find students whose department is neither CSE nor IT.
+    }
+});
+
+// 2. Department is neither CSE nor IT
+
 db.students.find({
     department: {
         $nin: ["CSE", "IT"]
-    } })
+    }
+});
 
-3.Find students who have BOTH Python AND MongoDB skills.
+// 3. Has BOTH Python and MongoDB
+
 db.students.find({
     skills: {
         $all: ["Python", "MongoDB"]
     }
-})
-$elemMatch
-This is useful when an array contains objects.
-Let's first add an array of objects to one student:
+});
+
+// =====================================================
+// TOPIC 6: $elemMatch
+// =====================================================
+
+// Add subjects array
+
 db.students.updateOne(
     { rollNo: 101 },
     {
@@ -493,42 +359,57 @@ db.students.updateOne(
             ]
         }
     }
-)
-4.Find students who have a subject named MongoDB with marks greater than 85.
+);
+
+// Find MongoDB subject with marks greater than 85
+
 db.students.find({
     subjects: {
         $elemMatch: {
             name: "MongoDB",
-            marks: { $gt: 85 }
+            marks: {
+                $gt: 85
+            }
         }
     }
-})
-5.Find students who have exactly 3 skills.
+});
+
+// =====================================================
+// TOPIC 7: $size
+// =====================================================
+
+// Students having exactly 3 skills
+
 db.students.find({
     skills: {
         $size: 3
     }
-})
+});
 
-PROJECTION OPERATORS
-Feature	Purpose
-$project	Select/reshape fields in aggregation
-Include using 1	Display selected fields
-Exclude using 0	Hide selected fields
-$slice	Return part of an array
+// =====================================================
+// TOPIC 8: PROJECTION OPERATORS
+// $project
+// =====================================================
 
-Projection means:
-Selecting which fields should be displayed in the result.
-1.Display only the student's name, department and marks using $project.
+// 1. Display name, department and marks
+
 db.students.aggregate([
     {
         $project: {
             _id: 0,
             name: 1,
             department: 1,
-            marks: 1 } } ])
-Include Fields
-2.Display only name and marks.
+            marks: 1
+        }
+    }
+]);
+
+// =====================================================
+// TOPIC 9: INCLUDE FIELDS
+// =====================================================
+
+// Display only name and marks
+
 db.students.find(
     {},
     {
@@ -536,19 +417,27 @@ db.students.find(
         name: 1,
         marks: 1
     }
-)
-Exclude Fields
-Similarly, we exclude fields using 0.
-3.Display all student information except address.
+);
+
+// =====================================================
+// TOPIC 10: EXCLUDE FIELDS
+// =====================================================
+
+// Display everything except address
+
 db.students.find(
     {},
     {
         address: 0
     }
-)
-$slice
-$slice is used to return only a portion of an array in the result.
-4.Display only the first two skills of every student.
+);
+
+// =====================================================
+// TOPIC 11: $slice
+// =====================================================
+
+// Display first two skills
+
 db.students.find(
     {},
     {
@@ -556,142 +445,119 @@ db.students.find(
         skills: {
             $slice: 2
         }
-    })
-Element Operators:
-Operator	Purpose	Example
-$exists	Checks whether a field exists	{scholarship: {$exists: true}}
-$type	Checks BSON data type	{marks: {$type: "int"}}
-$regex	Performs string pattern matching	{name: {$regex: "^A"}}
- 
-1.Find students whose scholarship field exists.
+    }
+);
+
+// =====================================================
+// TOPIC 12: ELEMENT OPERATORS
+// $exists, $type, $regex
+// =====================================================
+
+// 1. Scholarship field exists
+
 db.students.find({
     scholarship: {
         $exists: true
     }
-})
-2.Find students where scholarship does NOT exist:
+});
+
+// 2. Scholarship field does NOT exist
+
 db.students.find({
     scholarship: {
         $exists: false
     }
-})
-$type
-$type is used to check the BSON data type of a field.
-3.Find students whose marks field is stored as an integer.
+});
+
+// =====================================================
+// TOPIC 13: $type
+// =====================================================
+
+// Marks stored as integer
+
 db.students.find({
     marks: {
         $type: "int"
     }
-})
-$regex
-$regex is used for pattern matching in strings.
-4.Find students whose names start with the letter A.
+});
+
+// =====================================================
+// TOPIC 14: $regex
+// =====================================================
+
+// Names starting with A
+
 db.students.find({
     name: {
         $regex: "^A"
     }
-})
+});
 
+// =====================================================
+// TOPIC 15: CRUD - READ OPERATIONS
+// =====================================================
 
+// 1. Products in Laptop category
 
-
-
-
-
-
-
-
-
-CRUD Operations :
-
-for (let i = 1; i <= 50; i++) {
-
-    db.products.insertOne({
-        productId: i,
-        productName: "Product " + i ,
-        category:
-            i % 5 === 0 ? "Laptop" :
-            i % 5 === 1 ? "Mobile" :
-            i % 5 === 2 ? "Headphones" :
-            i % 5 === 3 ? "Keyboard" :
-                          "Mouse",
-
-        brand:
-            i % 3 === 0 ? "Dell" :
-            i % 3 === 1 ? "Samsung" :
-                          "HP",
-
-        price: 1000 + (i * 500),
-
-        stock: 10 + i,
-
-        rating: 3 + ((i % 3) * 0.5),
-
-        inStock: i % 4 !== 0,
-
-        tags: [
-            "electronics",
-            i % 2 === 0 ? "featured" : "new"
-        ],
-
-        seller: {
-            sellerId: 1000 + i,
-            sellerName: "Seller " + i
-        },
-
-        createdAt: new Date()
-    });
-}
-
-READ (Find) Operation : 
-1.How do you find all products belonging to the Laptop category?
 db.products.find({
     category: "Laptop"
-})
-2.How do you find all products that are currently in stock?
+});
+
+// 2. Products currently in stock
+
 db.products.find({
     inStock: true
-})
-3.How do you find products whose price is greater than 20000?
+});
+
+// 3. Price greater than 20000
+
 db.products.find({
     price: {
         $gt: 20000
     }
-})
-4.How do you find products whose price is less than 10000?
+});
+
+// 4. Price less than 10000
+
 db.products.find({
     price: {
-        $lt: 10000 } })
-5.How do you find products whose price is between 10000 and 30000?
+        $lt: 10000
+    }
+});
+
+// 5. Price between 10000 and 30000
+
 db.products.find({
     price: {
         $gte: 10000,
-        $lte: 30000 } })
-6.How do you find products sold by Seller 10?
+        $lte: 30000
+    }
+});
+
+// 6. Products sold by Seller 10
+
 db.products.find({
-    "seller.sellerName": "Seller 10" })
+    "seller.sellerName": "Seller 10"
+});
 
+// =====================================================
+// TOPIC 16: UPDATE OPERATIONS
+// updateOne()
+// =====================================================
 
+// 1. Change Product 1 price to 10000
 
-MongoDB — Update Operations
-MongoDB provides several operations for modifying existing documents:
-updateOne()
-updateMany()
-replaceOne()
-
-What is updateOne() in MongoDB?
-updateOne() is used to modify the first document that matches a specified condition.
-Syntax:
-db.collection.updateOne(
-    { filter },
-    { update })
-1.Change the price of Product 1 to 10000.
 db.products.updateOne(
     { productId: 1 },
-    { $set: { price: 10000 } } )
+    {
+        $set: {
+            price: 10000
+        }
+    }
+);
 
-Updating Multiple Fields
-1.Update the price and stock of Product 2.
+// 2. Update Product 2 price and stock
+
 db.products.updateOne(
     { productId: 2 },
     {
@@ -700,8 +566,10 @@ db.products.updateOne(
             stock: 100
         }
     }
-)
-2.Change the seller name of Product 3 to "Premium Seller".
+);
+
+// 3. Change Product 3 seller name
+
 db.products.updateOne(
     { productId: 3 },
     {
@@ -709,9 +577,14 @@ db.products.updateOne(
             "seller.sellerName": "Premium Seller"
         }
     }
-)
+);
 
-3.Add "sale" to the tags array of Product 4.
+// =====================================================
+// TOPIC 17: $push
+// =====================================================
+
+// Add "sale" to Product 4 tags
+
 db.products.updateOne(
     { productId: 4 },
     {
@@ -719,16 +592,29 @@ db.products.updateOne(
             tags: "sale"
         }
     }
-)
-4.Add "electronics" to the tags of Product 5 without creating a duplicate.
+);
+
+// =====================================================
+// TOPIC 18: $addToSet
+// =====================================================
+
+// Add electronics without duplicate
+
 db.products.updateOne(
     { productId: 5 },
     {
         $addToSet: {
-            tags: "electronics" } } )
-$inc
-$inc is used to increase or decrease a numeric field.
-5.Increase the stock of Product 6 by 20.
+            tags: "electronics"
+        }
+    }
+);
+
+// =====================================================
+// TOPIC 19: $inc
+// =====================================================
+
+// Increase Product 6 stock by 20
+
 db.products.updateOne(
     { productId: 6 },
     {
@@ -736,9 +622,10 @@ db.products.updateOne(
             stock: 20
         }
     }
-)
-6.Decrease the stock of Product 6 by 5.
-Answer:
+);
+
+// Decrease Product 6 stock by 5
+
 db.products.updateOne(
     { productId: 6 },
     {
@@ -746,10 +633,14 @@ db.products.updateOne(
             stock: -5
         }
     }
-)
-updateMany()
-Now we move from one document → multiple documents.
-1.Set inStock to true for all products belonging to the Laptop category.
+);
+
+// =====================================================
+// TOPIC 20: updateMany()
+// =====================================================
+
+// 1. Set Laptop products inStock to true
+
 db.products.updateMany(
     { category: "Laptop" },
     {
@@ -757,8 +648,10 @@ db.products.updateMany(
             inStock: true
         }
     }
-)
-2.Increase the price of all Samsung products by 1000.
+);
+
+// 2. Increase Samsung product prices by 1000
+
 db.products.updateMany(
     { brand: "Samsung" },
     {
@@ -766,8 +659,12 @@ db.products.updateMany(
             price: 1000
         }
     }
-)
-Example using multiple operators
+);
+
+// =====================================================
+// TOPIC 21: MULTIPLE UPDATE OPERATORS
+// =====================================================
+
 db.products.updateOne(
     { productId: 10 },
     {
@@ -775,72 +672,47 @@ db.products.updateOne(
             price: 25000,
             inStock: true
         },
+
         $inc: {
             stock: 10
         },
+
         $push: {
-            tags: "sale" }})
+            tags: "sale"
+        }
+    }
+);
 
-MongoDB — Delete Operations
-MongoDB mainly provides two deletion methods:
-deleteOne()
-deleteMany()
+// =====================================================
+// TOPIC 22: DELETE OPERATIONS
+// deleteOne()
+// =====================================================
 
-deleteOne()
-What is deleteOne()?
-deleteOne() is used to delete the first document that matches a specified condition.
-Syntax:
-db.collection.deleteOne({
-    condition
-})
-1.Delete the product whose productId is 10.
+// Delete Product 10
+
 db.products.deleteOne({
     productId: 10
-})
+});
 
-deleteMany()
-What is deleteMany()?
-deleteMany() is used to delete all documents that match a specified condition.
-Syntax:
-db.collection.deleteMany({
-    condition
-})
-1.Delete all products belonging to the Laptop category.
+// =====================================================
+// TOPIC 23: deleteMany()
+// =====================================================
+
+// 1. Delete all Laptop products
+
 db.products.deleteMany({
     category: "Laptop"
-})
-2.Delete all products whose price is greater than 30000.
-Answer:
+});
+
+// 2. Delete products with price greater than 30000
+
 db.products.deleteMany({
     price: {
         $gt: 30000
     }
-})
-3.How do you delete all documents from the products collection without deleting the collection itself?
-db.products.deleteMany({})
+});
 
+// 3. Delete all documents from products
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+db.products.deleteMany({});
+```
